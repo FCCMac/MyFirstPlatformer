@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -6,11 +6,18 @@
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=8]
 
 [node name="LevelTemplate" type="Node2D"]
 __meta__ = {
 "_edit_vertical_guides_": [ 4480.0 ]
 }
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="UserInterface" parent="UserInterface" instance=ExtResource( 8 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -39,55 +46,60 @@ stomp_impulse = 2000.0
 [node name="Camera2D" parent="Player" index="2"]
 limit_right = 7678
 
-[node name="Coin" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3130.73, 590.662 )
-
-[node name="Coin7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3223.48, 510.662 )
-
-[node name="Coin10" parent="." instance=ExtResource( 5 )]
-position = Vector2( 6835.48, 946.79 )
-
-[node name="Coin9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 6928.23, 866.79 )
-
-[node name="Coin6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2761.42, 841.138 )
-
-[node name="Coin2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3337.43, 485.011 )
-
-[node name="Coin11" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3605.08, 590.662 )
-
-[node name="Coin12" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3676.63, 675.814 )
-
-[node name="Coin13" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3748.19, 817.638 )
-
-[node name="Coin8" parent="." instance=ExtResource( 5 )]
-position = Vector2( 7042.19, 841.138 )
-
-[node name="Coin3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 5672.11, 797.638 )
-
-[node name="Coin4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 5672.11, 699.314 )
-
-[node name="Coin5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 5672.11, 590.662 )
-
 [node name="Portal2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 7537.74, 1099.47 )
+next_scene = ExtResource( 7 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3130.73, 590.662 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3223.48, 510.662 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 6835.48, 946.79 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 6928.23, 866.79 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 2761.42, 841.138 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3337.43, 485.011 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3605.08, 590.662 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3676.63, 675.814 )
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3748.19, 817.638 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 7042.19, 841.138 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 5672.11, 797.638 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 5672.11, 699.314 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 5672.11, 590.662 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 2378.12, 1099.47 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 4529.95, 590.662 )
 
-[node name="Enemy3" parent="." instance=ExtResource( 3 )]
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 6048.42, 1099.47 )
 
 [editable path="Player"]

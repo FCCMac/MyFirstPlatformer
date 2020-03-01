@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Screens/EndScreen.tscn" type="PackedScene" id=7]
 
 [node name="LevelTemplate" type="Node2D"]
 __meta__ = {
@@ -21,6 +24,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UserInterface" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="UserInterface" parent="UserInterface" instance=ExtResource( 6 )]
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 1, -1 )
 tile_set = ExtResource( 1 )
@@ -36,16 +44,22 @@ position = Vector2( 143.956, 499 )
 [node name="Camera2D" parent="Player" index="2"]
 limit_right = 4480
 
-[node name="Coin" parent="." instance=ExtResource( 5 )]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 5 )]
 position = Vector2( 2131.45, 295.748 )
 
-[node name="Coin2" parent="." instance=ExtResource( 5 )]
+[node name="Coin3" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 2053.34, 769.965 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 5 )]
+position = Vector2( 3102.2, 605.384 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
 position = Vector2( 1397.81, 694.648 )
 
-[node name="Coin" parent="Coin2" instance=ExtResource( 5 )]
-position = Vector2( 655.535, 75.3167 )
-
-[node name="Coin2" parent="Coin2" instance=ExtResource( 5 )]
-position = Vector2( 1704.39, -89.2644 )
+[node name="Portal2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 4078.53, 1101.92 )
+next_scene = ExtResource( 7 )
 
 [editable path="Player"]
